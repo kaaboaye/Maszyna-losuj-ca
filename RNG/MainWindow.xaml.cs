@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RNG.Models;
 
 namespace RNG
 {
@@ -20,9 +21,24 @@ namespace RNG
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainWindowModel Model;
+
         public MainWindow()
         {
             InitializeComponent();
+            Model = new Models.MainWindowModel(
+                MinNumber, 
+                MaxNumber, 
+                RandomNumber
+                );
+
+            MinNumber.Text = RandomNumberGenerator.DefaultMinNumber.ToString();
+            MaxNumber.Text = RandomNumberGenerator.DefaultMaxNumber.ToString();
+        }
+
+        void DoIt_Click(Object sender, RoutedEventArgs e)
+        {
+            Model.Calc();
         }
     }
 }
